@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { MessageModel } from '../interface/message.interface';
+import { v4 as uuidv4 } from 'uuid';
 
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 
@@ -24,16 +24,28 @@ export class ChatService {
   ) {
     this.auth.authState.subscribe(user => {
       if (!user) { return }
-      this.user.nombre = user.displayName;
+      this.user.name = user.displayName;
       this.user.uid = user.uid;
-      console.log("🚀 ~ file: chat.service.ts ~ line 29 ~ ChatService ~ this.user", this.user)
     })
+
+    if (sessionStorage.getItem('user')) {
+      this.user = JSON.parse(sessionStorage.getItem('user') || '');
+    }
   }
 
-  login() {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  login(provider: string, name: string) {
+    if (provider == 'manual') {
+      this.user.name = name;
+      this.user.uid = uuidv4();
+      sessionStorage.setItem('user', JSON.stringify(this.user));
+    } else if (provider == 'google') {
+      this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    } else if (provider == 'twitter') {
+      this.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
+    }
   }
   logout() {
+    sessionStorage.removeItem('user');
     this.user = {};
     this.auth.signOut();
   }
@@ -51,9 +63,10 @@ export class ChatService {
 
   saveMessage(text: string) {
     let message: MessageModel = {
-      name: 'Saul',
+      name: this.user.name,
       message: text,
-      date: new Date().getTime()
+      date: new Date().getTime(),
+      uid: this.user.uid
     }
 
     return this.itemsCollection.add(message);

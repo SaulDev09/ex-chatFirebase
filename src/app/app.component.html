@@ -1,15 +1,15 @@
 <div class="container main-container mt-3">
-  <h1>Firestore Chat</h1>
+  <h1 class="text-center">Firestore Chat</h1>
 
   <div class="col-md-12 text-end" *ngIf="chatService.user.uid">
     <button type="button" class="btn btn-outline-danger" (click)="chatService.logout()">Salir</button>
   </div>
 
   <app-login *ngIf="!chatService.user.uid"></app-login>
-  <!-- 
-  <div class="chat-window">
+
+  <div *ngIf="chatService.user.uid" class="chat-window">
     <app-chat></app-chat>
-  </div> -->
+  </div>
 </div>
 
 <!-- <ul>

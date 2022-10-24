@@ -7,18 +7,15 @@ import { ChatService } from 'src/app/providers/chat.service';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
+  public name: string = '';
 
   constructor(
     private chatService: ChatService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   login(provider: string) {
-    console.log("🚀 ~ file: login.component.ts ~ line 15 ~ LoginComponent ~ login ~ provider", provider)
-    if (provider == 'google') { this.chatService.login(); }
+    this.chatService.login(provider, this.name);
   }
-
- 
 }
