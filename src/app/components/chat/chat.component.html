@@ -1,10 +1,10 @@
-<h1> Chat</h1>
-<hr>
+<h1 class="chatTitle"> Chat</h1>
+<hr class="chatHR">
 <div class="app-messages" id="app-messages">
-
-    <div *ngFor="let item of chatService.chats" [ngClass]="{'text-end': item.uid === chatService.user.uid}">
+    <div *ngFor="let item of chatService.chats" class="messageDiv"
+        [ngClass]="{'text-end': item.uid === chatService.user.uid}">
         <span class="badge"
-            [ngClass]="{'bg-success': item.uid !== chatService.user.uid, 'bg-primary': item.uid === chatService.user.uid}">{{item.name}}</span>
+            [ngClass]="{'bagde-other': item.uid !== chatService.user.uid, 'bagde-me': item.uid === chatService.user.uid}">{{item.name}}</span>
         <p>
             {{item.message}}
         </p>
