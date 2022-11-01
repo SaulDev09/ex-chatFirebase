@@ -2,7 +2,7 @@
   <h1 class="text-center">Firestore Chat</h1>
 
   <div class="col-md-12 text-end mb-2" *ngIf="chatService.user.uid">
-    <button type="button" class="btn btn-outline-danger" (click)="chatService.logout()">Salir</button>
+   <button type="button" class="btn btn-outline-danger" (click)="chatService.logout()">Log out</button>
   </div>
 
   <app-login *ngIf="!chatService.user.uid"></app-login>
