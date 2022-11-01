@@ -1,56 +1,76 @@
-.main-container{
-    margin-top: 40px;
-    margin-bottom: 150px;
+.main-container {
+  margin-top: 40px;
+  margin-bottom: 150px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.chatTitle {
+  text-align: center;
+  background-color: #797de6;
+  margin: 0;
+  color: #e6e4f9;
+}
+
+.chatHR {
+  margin: 0;
+}
+
+.chat-window {
+  margin: 0 auto;
+  //   padding: 10px;
+  width: 300px;
+  height: 360px;
+  overflow: hidden;
+  border: 1px solid #797de6;
+  border-radius: 20px;
+}
+
+.app-messages {
+  overflow-y: scroll;
+  height: 270px;
+  /*background:gray;*/
+  padding: 5px;
+}
+
+/* Animaciones */
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.fast {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .pointer{
-    cursor: pointer;
+
+  to {
+    opacity: 1;
   }
-  
-  
-  .chat-window{
-    padding: 10px;
-    width: 300px;
-    height: 400px;
-    overflow: hidden;
-    border: 1px solid #4080FF;
-    border-radius: 20px;
-  }
-  
-  .app-messages{
-    overflow-y:scroll;
-    height:270px;
-    /*background:gray;*/
-    padding: 5px;
-  }
-  
-  
-  /* Animaciones */
-  .animated {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-  }
-  
-  .fast {
-    -webkit-animation-duration: 0.3s;
-    animation-duration: 0.3s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-  
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .fadeIn {
-    animation-name: fadeIn;
-  }
-  
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.messageDiv {
+  margin: 0 10px;
+}
+
+.bagde-other {
+  background-color: #8976e6;
+}
+.bagde-me {
+  background-color: #47476a;
+}
